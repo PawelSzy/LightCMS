@@ -29,7 +29,9 @@
   Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut at est id ante rutrum pharetra a non arcu. Integer venenatis nibh lorem, eget efficitur libero posuere vitae. Phasellus convallis odio ac lectus aliquet, et dignissim est sodales. Etiam euismod tortor vel quam tristique, eu sodales mi feugiat. Nullam eget ex odio. Vestibulum maximus ex mi, vitae efficitur nibh ultrices ac. Etiam commodo orci sed maximus efficitur. Nam vel ornare sem, non dignissim lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat dui quis turpis suscipit, sollicitudin sodales ipsum auctor. Nunc dui enim, hendrerit vel efficitur at, semper in metus. Duis at ipsum neque. Aliquam non urna sed velit ornare ultrices.
 
   Integer consectetur sed ipsum et sagittis. Vestibulum tincidunt erat sed lobortis ultricies. Donec facilisis aliquam ultricies. Donec ligula elit, malesuada nec fringilla sed, aliquet vitae ante. Donec imperdiet, turpis ac fringilla eleifend, leo nulla tempus nisi, non imperdiet eros arcu eget justo. Vivamus id tellus nulla. Integer molestie ligula neque, non accumsan nunc elementum ac. Suspendisse sodales efficitur sapien in sagittis. Nunc volutpat porttitor sapien vitae cursus. Integer id fringilla eros, ut maximus sem." ;      
-                echo $text; 
+                $text_rows = explode("\n", $text);
+                foreach ($text_rows as $row)
+                      echo "<p>".$row."</p>"; 
               ?>
             <br /><br /><br /><br />					
   				</div>
