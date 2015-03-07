@@ -1,0 +1,1 @@
+<div class="header" id="naglowek1">LightCMS <hr /></div>

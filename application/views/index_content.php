@@ -1,17 +1,3 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LightCMS Pawel test</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="main.css">
-  </head>
-  <body>
-  		<div class="container" role="main">
-  			<div class="header" id="naglowek1">LightCMS <hr /></div>
   			<div class="container" id="glowna_tresc">
   				<div class="nav content_box"> <input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"></div>
   				<div class="kolumna"></div>
@@ -20,6 +6,17 @@
   					<p>Nastepna linijka</p>	
             <?php 
             echo "test";
+            
+            try {
+              $pdo = new PDO('mysql:host=localhost;dbname=artykuly', 'Pawel', 'test');
+            }
+            catch(PDOexception $e){
+              $output = "nie można nawiazać polaczenia z serwerem bazy danych";
+              include 'output.html.php';
+              exit();
+
+            };
+
               $text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit congue turpis a porttitor. Suspendisse potenti. Curabitur et nisl vel augue laoreet condimentum. Vestibulum eu congue augue. Donec justo nisi, condimentum posuere interdum eu, pulvinar eget tellus. Quisque in ante massa. Praesent a diam eget libero finibus congue. Suspendisse porta risus a gravida maximus. In turpis nisi, semper eget luctus ac, mattis ut augue. Vestibulum et volutpat tellus.
 
   Proin tristique commodo eleifend. Morbi euismod tempus augue, a imperdiet nisi. Suspendisse mattis vitae libero a pulvinar. Sed lacus risus, porta maximus congue non, volutpat vel libero. Nunc erat felis, egestas sit amet porttitor id, hendrerit non nisi. Vivamus eu suscipit quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque vitae nulla in libero venenatis imperdiet. Cras non nunc vitae purus viverra molestie.
@@ -35,11 +32,4 @@
               ?>
             <br /><br /><br /><br />					
   				</div>
-  			</div>	
-        <div class="stopka" id="stopka">
-          <p>Prosta wersja CMS stworzona przez Pawla Szymańskiego</p>
-          <p>email: pawelszyman (w) gmail.com</p>
-        </div>
-  		</div>
-  </body>
-  </html>
+  			</div>
