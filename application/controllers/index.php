@@ -23,7 +23,7 @@
 
   Integer consectetur sed ipsum et sagittis. Vestibulum tincidunt erat sed lobortis ultricies. Donec facilisis aliquam ultricies. Donec ligula elit, malesuada nec fringilla sed, aliquet vitae ante. Donec imperdiet, turpis ac fringilla eleifend, leo nulla tempus nisi, non imperdiet eros arcu eget justo. Vivamus id tellus nulla. Integer molestie ligula neque, non accumsan nunc elementum ac. Suspendisse sodales efficitur sapien in sagittis. Nunc volutpat porttitor sapien vitae cursus. Integer id fringilla eros, ut maximus sem." ;      
                 
-            
+            /*
             try {
               $pdo = new PDO('mysql:host=localhost;dbname=artykuly', 'Pawel', 'test');
             }
@@ -32,7 +32,12 @@
               include 'output.html.php';
               exit();
             }  	
+			*/
 
+			$this->load->model('artykuly');
+			$data['artykuly'] = $this->artykuly->pobierz_artykuly(5);
+
+			$text = $data['artykuly'][0]['tekst'];
 
             $text_rows = explode("\n", $text);
             foreach ($text_rows as $row)

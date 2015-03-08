@@ -17,7 +17,13 @@ class Artykuly extends CI_Model
 		return $query->result_array();
 	}
 
-}
+
+	public function zapisz($dane)
+	{
+		$this->db->insert('artykuly', $dane);
+		return $this->db->insert_id();
+	}
+}	
 
 ?>
 

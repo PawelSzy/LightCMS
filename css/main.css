@@ -121,6 +121,23 @@ hr {
   padding: 0.25em;
 }
 
+.small_form, .big_form {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 40%;
+}
+
+.form_vraper {
+  width: 100%
+}
+
+.big_form {
+  height: 30em;
+  width: 80%;
+
+  display: block;
+}
+
 #main {
 	width: 100%;
 	background-color: white;	
