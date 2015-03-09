@@ -13,7 +13,8 @@ class Artykuly extends CI_Model
 
 	public function pobierz_artykuly($ilosc_pierwszych )
 	{
-		$query = $this->db->get('artykuly');
+		$this->db->order_by("data", "desc"); 
+		$query = $this->db->get('artykuly', $ilosc_pierwszych);
 		return $query->result_array();
 	}
 
