@@ -37,11 +37,20 @@
 			$this->load->model('artykuly');
 			$data['artykuly'] = $this->artykuly->pobierz_artykuly(5);
 
-			$text = $data['artykuly'][0]['tekst'];
+			foreach ($data['artykuly'] as $artykul) 
+			{
+				$text = $artykul['tekst'];
+				$autor =$artykul['autor'];
+		        $text_rows = explode("\n", $text);
+            	foreach ($text_rows as $row)
+    	        	$data['index_content'] =$data['index_content']. "<p>".$row."</p>"; 
+    	        $data['index_content'] = $data['index_content']."<br>"."Autor:"."<br>".$autor."<br>";
+    	        $data['index_content'] = $data['index_content']."<br>"."<hr>";
+			}
 
-            $text_rows = explode("\n", $text);
-            foreach ($text_rows as $row)
-    	        $data['index_content'] =$data['index_content']. "<p>".$row."</p>"; 
+			#$text = $data['artykuly'][0]['tekst'];
+
+ 
  	
 
 
