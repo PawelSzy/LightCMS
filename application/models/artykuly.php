@@ -18,6 +18,14 @@ class Artykuly extends CI_Model
 		return $query->result_array();
 	}
 
+	public function pobierz_artykul( $nazwa_artykulu ) 
+	{
+
+		$this->db->where('tytul',urldecode($nazwa_artykulu));
+		$query = $this->db->get('artykuly');
+		return $query->result_array();
+	} 
+
 
 	public function zapisz($dane)
 	{
