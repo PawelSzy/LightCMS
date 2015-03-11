@@ -29,6 +29,8 @@
 
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
+			$this->load->helper('url');
+
 			$data[$page_name] = $this->artykuly->pobierz_artykul($page_name);
 
 			if ( empty($data[$page_name]) )
@@ -42,11 +44,15 @@
 			foreach ($data[$page_name] as $artykul) 
 			{
 				$text = auto_typography($artykul['tekst']);
+				
 				$autor =$artykul['autor'];
+				$tytul = $artykul['tytul'];
+				$this->load->helper('url');
 
+				$data['content'] = $data['content']."<h1>".$tytul."</h1>";
 				$data['content'] = $data['content'].$text;
     	        $data['content'] = $data['content']."<br>"."Autor:"."<br>".$autor."<br>";
-    	        $data['content'] = $data['content']."<br>"."<hr>";
+    	        $data['content'] = $data['content']."<hr>";
 			}
 			$this->wyswietl_tresc($data);
 		}
@@ -61,17 +67,23 @@
 
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
+			
 
 			$data['artykuly'] = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
 
 			foreach ($data['artykuly'] as $artykul) 
 			{
 				$text = auto_typography($artykul['tekst']);
+				
 				$autor =$artykul['autor'];
+				$tytul = $artykul['tytul'];
+				$this->load->helper('url');
 
+				$data['content'] = $data['content']."<h1>".$tytul."</h1>";
 				$data['content'] = $data['content'].$text;
     	        $data['content'] = $data['content']."<br>"."Autor:"."<br>".$autor."<br>";
-    	        $data['content'] = $data['content']."<br>"."<hr>";
+    	        $data['content'] = $data['content']."<br>"."Link: ".anchor("/index/index/".$tytul, $tytul );
+    	        $data['content'] = $data['content']."<hr>";
 			}
 			$this->wyswietl_tresc($data);
 
@@ -93,6 +105,14 @@
 			$this->load->view('stopka');
 			$this->load->view('body_end');
 		}
+
+
+		private function utworz_ulr($pod_strona)
+		{
+			$this->load->helper('url');
+			return current_url().$pod_strona;
+		}
+
 	}
 
 ?>
