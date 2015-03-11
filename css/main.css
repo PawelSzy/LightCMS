@@ -8,7 +8,10 @@ body, html {
 
 img, embed, object, video { max-width: 100%;}
 
-
+a {
+   color: #BD9F86;
+   text-decoration: underline;
+}
 
 hr { 
     display: block;
@@ -22,7 +25,10 @@ hr {
     color: #F2F2F2;
 } 
 
-
+h1 {
+  color: #BD9F86;
+  font-size: 1.6em;
+}
 
 #glowna_tresc {
   order: 1;
@@ -40,8 +46,20 @@ hr {
   text-align: center;
   background-color:white;
   color: #BD9F86;
+  text-decoration: none;
   font-family:  'Open Sans: 300', 'Source Sans Pro',"HelveticaNeue-Light" ,  "Helvetica", Arial, sans-serif;
 }
+
+
+
+#naglowek1 a {
+
+  color: #BD9F86;
+  text-decoration: none;
+}
+
+
+
 
 .container {
 		width: 100%;

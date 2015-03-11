@@ -92,12 +92,16 @@
 		private function wyswietl_tresc($data)
 		{
 
+			$this->load->helper('url');
+
+			$data['header'] = anchor("", "LightCMS" );
+
 			$this->load->library('parser');
 
 			$this->parser->parse('head', $data);
 			#$this->load->view('head', $data);
 			$this->load->view('body_start');
-			$this->load->view('header');
+			$this->parser->parse('header',  $data);
 
 			$this->parser->parse('index_content', $data);
 			#$this->load->view('content');
