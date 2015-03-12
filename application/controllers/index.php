@@ -85,6 +85,9 @@
     	        $data['content'] = $data['content']."<br>"."Link: ".anchor("/index/index/".$tytul, $tytul );
     	        $data['content'] = $data['content']."<hr>";
 			}
+
+			$data['content'] = $data['content']."<br>".anchor("/pokaz_liste", "Pokaz wszystkie artykuly");
+
 			$this->wyswietl_tresc($data);
 
 		}
@@ -111,11 +114,8 @@
 		}
 
 
-		private function utworz_ulr($pod_strona)
-		{
-			$this->load->helper('url');
-			return current_url().$pod_strona;
-		}
+
+
 
 	}
 

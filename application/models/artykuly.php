@@ -11,10 +11,14 @@ class Artykuly extends CI_Model
 		$this->load->database();
 	}
 
-	public function pobierz_artykuly($ilosc_pierwszych )
+	public function pobierz_artykuly( $ilosc_pierwszych=0 )
 	{
 		$this->db->order_by("data", "desc"); 
-		$query = $this->db->get('artykuly', $ilosc_pierwszych);
+		if ( $ilosc_pierwszych === 0 ) {
+			$query = $this->db->get('artykuly');
+		} else {
+			$query = $this->db->get('artykuly', $ilosc_pierwszych);
+		}
 		return $query->result_array();
 	}
 
@@ -25,6 +29,15 @@ class Artykuly extends CI_Model
 		$query = $this->db->get('artykuly');
 		return $query->result_array();
 	} 
+
+	public function pobierz_tytuly()
+	{
+		$this->db->order_by("data", "desc"); 
+		$this->db->select('tytul, autor');
+		$query = $this->db->get('artykuly');
+
+		return $query->result_array();	
+	}	
 
 
 	public function zapisz($dane)

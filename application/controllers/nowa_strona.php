@@ -12,9 +12,11 @@
 		{
 
 			$data['title'] = "Nowa strona";
+			$this->load->helper('url');
  			
  			$this->load->helper('form');
  			
+ 			$data['header'] = anchor("", "LightCMS" );
 
 
 			$this->load->library('parser');
@@ -22,9 +24,9 @@
 			$this->parser->parse('head', $data);
 			#$this->load->view('head', $data);
 			$this->load->view('body_start');
-			$this->load->view('header');
+			$this->parser->parse('header', $data);
 
-			$this->load->view('form');
+			$this->load->view('nowa_strona_form');
 
 			$this->load->view('stopka');
 			$this->load->view('body_end');
