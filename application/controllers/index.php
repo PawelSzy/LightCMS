@@ -71,7 +71,7 @@
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
 			
-
+			
 			$data['artykuly'] = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
 
 			foreach ($data['artykuly'] as $artykul) 
@@ -100,10 +100,13 @@
 
 			$this->load->helper('url');
 
-			$data['header'] = $this->utworz_heder_z_log();
+			$data['header'] = anchor("", "LightCMS" );
+			$data['log_block'] = $this->utworz_log_block ();
 
 			$this->load->library('parser');
 
+
+			$this->parser->parse('log_block', $data);
 			$this->parser->parse('head', $data);
 			#$this->load->view('head', $data);
 			$this->load->view('body_start');
@@ -117,23 +120,26 @@
 		}
 
 
-		private function utworz_heder_z_log () 
+		private function utworz_log_block () 
 		{
-			$anchor = anchor("", "LightCMS" );
 			$session_data = $this->session->all_userdata();
-			$login_info = "zaloguj" ; 
+			$nowy_uzytkownik = anchor( "/nowy_autor/", "utworz" );
+			$zaloguj = anchor( "/zaloguj/", "zaloguj" );
+			$login_info = $nowy_uzytkownik." ".$zaloguj ; 
+			
+
+
 			if ( $session_data === false )
 			{
 				$pass = 1;
 			}	
 
-			$header = "";
-			#$header = $header.anchor("", "LightCMS" );
-			$header = $header."<div class='log_info'>".$login_info."</div>"; 
-			$header = $header."<div id='naglowek1'>".$anchor."</div>"; 
+			$log_block = "";
+
+			$log_block = $log_block.$login_info; 
 			 
 
-			return $header;
+			return $log_block;
 		}
 
 

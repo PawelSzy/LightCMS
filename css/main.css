@@ -30,22 +30,31 @@ h1 {
   font-size: 1.6em;
 }
 
-.header {
+
+#log_block {
   order 0;
-  width: 100%;
+  width: 100%
+  color:black;
+  text-align: right;
+  padding-right: 5em;
+  font-size: 1.1em;
 }
 
 #glowna_tresc {
-  order: 1;
-}
-
-#stopka {
   order: 2;
 }
 
+#stopka {
+  order: 3;
+}
+
+
+
+
 
 #naglowek1 {
-  
+  order 1;
+  width: 100%;
   font-size: 5em;
   text-align: center;
   background-color:white;
@@ -63,10 +72,7 @@ h1 {
 }
 
 .log_info {
-  color:black;
-  text-align: right;
-  padding-right: 5em;
-  font-size: 1.1em;
+
 }
 
 
