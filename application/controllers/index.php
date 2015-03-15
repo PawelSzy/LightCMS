@@ -71,7 +71,7 @@
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
 			
-			
+
 			$data['artykuly'] = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
 
 			foreach ($data['artykuly'] as $artykul) 
@@ -123,7 +123,7 @@
 		private function utworz_log_block () 
 		{
 			$session_data = $this->session->all_userdata();
-			$nowy_uzytkownik = anchor( "/nowy_autor/", "utworz" );
+			$nowy_uzytkownik = anchor( "/nowy_autor/", "zarejestruj sie" );
 			$zaloguj = anchor( "/zaloguj/", "zaloguj" );
 			$login_info = $nowy_uzytkownik." ".$zaloguj ; 
 			
@@ -131,12 +131,18 @@
 
 			if ( $session_data === false )
 			{
-				$pass = 1;
+				$log_block = "";
+				$log_block = $log_block.$login_info;
 			}	
+			else 
+			{
+				$log_block = "";
+				$log_block = $log_block."Witaj: ";
+				$log_block = $log_block.( $this->session->userdata('login') );
 
-			$log_block = "";
+			}
 
-			$log_block = $log_block.$login_info; 
+ 
 			 
 
 			return $log_block;
