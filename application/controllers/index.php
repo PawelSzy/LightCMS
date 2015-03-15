@@ -5,6 +5,7 @@
 		public function __construct()
 		{
 			parent::__construct();
+			$this->load->library('session');
 		}
 
 		public function index($page_name ="")
@@ -40,6 +41,8 @@
 			} 
 
 			$data['title'] = $data[$page_name][0]['tytul'];
+
+
 
 			foreach ($data[$page_name] as $artykul) 
 			{
@@ -97,7 +100,7 @@
 
 			$this->load->helper('url');
 
-			$data['header'] = anchor("", "LightCMS" );
+			$data['header'] = $this->utworz_heder_z_log();
 
 			$this->load->library('parser');
 
@@ -114,7 +117,24 @@
 		}
 
 
+		private function utworz_heder_z_log () 
+		{
+			$anchor = anchor("", "LightCMS" );
+			$session_data = $this->session->all_userdata();
+			$login_info = "zaloguj" ; 
+			if ( $session_data === false )
+			{
+				$pass = 1;
+			}	
 
+			$header = "";
+			#$header = $header.anchor("", "LightCMS" );
+			$header = $header."<div class='log_info'>".$login_info."</div>"; 
+			$header = $header."<div id='naglowek1'>".$anchor."</div>"; 
+			 
+
+			return $header;
+		}
 
 
 	}

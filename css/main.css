@@ -30,6 +30,11 @@ h1 {
   font-size: 1.6em;
 }
 
+.header {
+  order 0;
+  width: 100%;
+}
+
 #glowna_tresc {
   order: 1;
 }
@@ -40,8 +45,7 @@ h1 {
 
 
 #naglowek1 {
-  order: 0;
-  width: 100%;
+  
   font-size: 5em;
   text-align: center;
   background-color:white;
@@ -58,7 +62,12 @@ h1 {
   text-decoration: none;
 }
 
-
+.log_info {
+  color:black;
+  text-align: right;
+  padding-right: 5em;
+  font-size: 1.1em;
+}
 
 
 .container {

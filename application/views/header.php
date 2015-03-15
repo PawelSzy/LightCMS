@@ -1,1 +1,1 @@
-<div class="header" id="naglowek1">{header} <hr /></div>
+<div class="header" >{header} <hr /></div>
