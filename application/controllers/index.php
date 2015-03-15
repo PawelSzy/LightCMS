@@ -108,7 +108,6 @@
 
 			$this->parser->parse('log_block', $data);
 			$this->parser->parse('head', $data);
-			#$this->load->view('head', $data);
 			$this->load->view('body_start');
 			$this->parser->parse('header',  $data);
 
@@ -141,9 +140,6 @@
 				$log_block = $log_block.( $this->session->userdata('login') );
 
 			}
-
- 
-			 
 
 			return $log_block;
 		}

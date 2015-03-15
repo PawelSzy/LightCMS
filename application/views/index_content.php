@@ -1,5 +1,8 @@
   			<div class="container" id="glowna_tresc">
-  				<div class="nav content_box"> <input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"></div>
+  				<div class="nav content_box">
+				<form method='post' action="http://localhost/xampp/LightCMS/index.php/nowa_strona/">
+  				 <input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  ></div>
+  				</form>
   				<div class="kolumna"></div>
           <div class="content content_box"  id="tresc" >
             {content}				
