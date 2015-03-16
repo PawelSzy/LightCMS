@@ -33,11 +33,17 @@ h1 {
 
 #log_block {
   order 0;
-  width: 100%
+  width: 100%;
   color:black;
   text-align: right;
-  padding-right: 5em;
+  padding-right: 4em;
   font-size: 1.1em;
+}
+
+#log_block a {
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  color:black;
 }
 
 #glowna_tresc {

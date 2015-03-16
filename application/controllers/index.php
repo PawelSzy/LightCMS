@@ -106,9 +106,10 @@
 			$this->load->library('parser');
 
 
-			$this->parser->parse('log_block', $data);
+			
 			$this->parser->parse('head', $data);
 			$this->load->view('body_start');
+			$this->parser->parse('log_block', $data);
 			$this->parser->parse('header',  $data);
 
 			$this->parser->parse('index_content', $data);
@@ -127,17 +128,20 @@
 			$login_info = $nowy_uzytkownik." ".$zaloguj ; 
 			
 
-
-			if ( $session_data === false )
+			if ( $this->session->userdata('login') === false )
 			{
+				//Uzytkownik niezalogowany
 				$log_block = "";
 				$log_block = $log_block.$login_info;
 			}	
 			else 
 			{
+				// Uzytkownik zalogowany
+				$wyloguj = anchor( "/wyloguj/", "wyloguj" );
 				$log_block = "";
 				$log_block = $log_block."Witaj: ";
 				$log_block = $log_block.( $this->session->userdata('login') );
+				$log_block = $log_block.$wyloguj;
 
 			}
 
