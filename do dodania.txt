@@ -1,0 +1,11 @@
+zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" generowany link 
+
+<form class="form_vraper" action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" method='post' accept-charset="utf-8">
+
+w nowy_autor, nowy_post 
+******************************************
+ustaw session
+*****************************************
+przycisk nowa strona na stronie_g³ownej zrob link
+****************************************
+logo z linkiem w header

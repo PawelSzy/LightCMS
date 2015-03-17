@@ -6,10 +6,17 @@
 		{
 			parent::__construct();
 			$this->load->model('artykuly');
+			$this->load->helper('url');
 		}
 
 		public function index()
 		{
+			if ( $this->session->userdata('login') === false )
+			{
+				//Uzytkownik niezalogowany
+				redirect('/zaloguj/', 'refresh');
+			}
+
 
 			$data['title'] = "Nowa strona";
 			$this->load->helper('url');
@@ -36,17 +43,34 @@
 		public function zapisz() 
 		{
 			$this->load->library('form_validation');
+			$this->load->database();
 
 			$this->load->helper('url');
 
-			$artykul = array 
-			(
-				'tytul' => $this->input->post('tytul'),
-				'tekst'	=> $this->input->post('tresc')		
-			);
+
+			if ( $this->session->userdata('login') === false )
+			{
+				//Uzytkownik niezalogowany
+				redirect('/zaloguj/', 'refresh');
+			}	
+			else 
+			{
+				// Uzytkownik zalogowany
+				$artykul = array 
+				(
+					'autor_id' => $this->session->userdata('autor_id'), 
+					'tytul' => $this->input->post('tytul'),
+					'tekst'	=> $this->input->post('tresc')		
+				);
 
 
-			$this->artykuly->zapisz($artykul);
+				$this->artykuly->zapisz($artykul);
+				echo "informacja zapisana";
+				redirect('', 'refresh');
+
+			}
+
+
 
 			echo "informacja zapisana";
 		}
