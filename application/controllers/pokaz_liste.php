@@ -5,6 +5,7 @@
 		{
 			parent::__construct();
 			$this->load->model('artykuly');
+			$this->load->helper('wyswietl_tresc');
 		}
 
 		public function index()
@@ -31,31 +32,8 @@
 
 
 
-			$this->wyswietl_tresc($data);
+			wyswietl_tresc( $data, $this ); //zaladowany helper wyswietl tresc
 		}
-
-		private function wyswietl_tresc($data)
-		{
-
-			$this->load->helper('url');
-
-			$data['header'] = anchor("", "LightCMS" );
-
-			$this->load->library('parser');
-
-			$this->parser->parse('head', $data);
-			#$this->load->view('head', $data);
-			$this->load->view('body_start');
-			$this->parser->parse('header',  $data);
-
-			$this->parser->parse('index_content', $data);
-			#$this->load->view('content');
-
-			$this->load->view('stopka');
-			$this->load->view('body_end');
-		}
-
-
 
 	}
 ?>

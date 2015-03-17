@@ -6,11 +6,16 @@
 		{
 			parent::__construct();
 			$this->load->library('session');
+			$this->load->helper('wyswietl_tresc');
+			$this->load->model('artykuly');
+			$this->load->helper('typography');
+			$this->load->helper('url');
 		}
 
 		public function index($page_name ="")
 		{
-
+			//wybor czy pojedyncza strona
+			//czy glowna strona z najnowszymi artykulami
 			if ( $page_name =="" )
 			{
 				$this->main_page();
@@ -28,9 +33,6 @@
 		{
  			$data['content'] = "";
 
-			$this->load->model('artykuly');
-			$this->load->helper('typography');
-			$this->load->helper('url');
 
 			$data[$page_name] = $this->artykuly->pobierz_artykul($page_name);
 
@@ -41,8 +43,7 @@
 			} 
 
 			$data['title'] = $data[$page_name][0]['tytul'];
-
-
+			#$data['boczny_pasek'] = ' <input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  >' ;
 
 			foreach ($data[$page_name] as $artykul) 
 			{
@@ -57,7 +58,8 @@
     	        $data['content'] = $data['content']."<br>"."Autor:"."<br>".$autor."<br>";
     	        $data['content'] = $data['content']."<hr>";
 			}
-			$this->wyswietl_tresc($data);
+
+			wyswietl_tresc( $data, $this ); //zaladowany helper wyswietl tresc
 		}
 
 		private function main_page() 
@@ -67,12 +69,10 @@
 
 			$data['title'] = "LightCMS Pawel test";
  			$data['content'] = "";
-
-			$this->load->model('artykuly');
-			$this->load->helper('typography');
 			
 
 			$data['artykuly'] = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
+			#$data['boczny_pasek'] = '<input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  >';
 
 			foreach ($data['artykuly'] as $artykul) 
 			{
@@ -80,7 +80,6 @@
 				
 				$autor =$artykul['autor'];
 				$tytul = $artykul['tytul'];
-				$this->load->helper('url');
 
 				$data['content'] = $data['content']."<h1>".$tytul."</h1>";
 				$data['content'] = $data['content'].$text;
@@ -91,35 +90,34 @@
 
 			$data['content'] = $data['content']."<br>".anchor("/pokaz_liste", "Pokaz wszystkie artykuly");
 
-			$this->wyswietl_tresc($data);
+			
+			wyswietl_tresc( $data, $this ); //zaladowany helper wyswietl tresc
 
 		}
 
-		private function wyswietl_tresc($data)
-		{
 
-			$this->load->helper('url');
 
-			$data['header'] = anchor("", "LightCMS" );
-			$data['log_block'] = $this->utworz_log_block ();
+		// private function wyswietl_tresc($data)
+		// {
+		// 	$this->load->helper('url');
 
-			$this->load->library('parser');
+		// 	$data['header'] = anchor("", "LightCMS" );
+		// 	$data['log_block'] = $this->utworz_log_block ();
 
+		// 	$this->load->library('parser');
 
 			
-			$this->parser->parse('head', $data);
-			$this->load->view('body_start');
-			$this->parser->parse('log_block', $data);
-			$this->parser->parse('header',  $data);
+		// 	$this->parser->parse('head', $data);
+		// 	$this->load->view('body_start');
+		// 	$this->parser->parse('log_block', $data);
+		// 	$this->parser->parse('header',  $data);
 
-			$this->parser->parse('index_content', $data);
-			#$this->load->view('content');
+		// 	$this->parser->parse('index_content', $data);
+		// 	$this->load->view('stopka');
+		// 	$this->load->view('body_end');
+		// }
 
-			$this->load->view('stopka');
-			$this->load->view('body_end');
-		}
-
-
+/*
 		private function utworz_log_block () 
 		{
 			$session_data = $this->session->all_userdata();
@@ -146,7 +144,10 @@
 			}
 
 			return $log_block;
-		}
+		}*/
+
+
+
 
 
 	}

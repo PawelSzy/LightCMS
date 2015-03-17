@@ -69,9 +69,6 @@
 				redirect('', 'refresh');
 
 			}
-
-
-
 			echo "informacja zapisana";
 		}
 		
