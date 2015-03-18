@@ -64,7 +64,7 @@ if ( ! function_exists('utworz_boczne_przyciski'))
 		
 
 		$przyciski_div1 = "
-		<form method='post' action=".base_url()."index.php/nowa_strona/>
+		<form method='post' action=".base_url()."index.php/edytuj/index/>
   			<input type='submit' class='przycisk' name='nowa_strona' value='Nowa strona'  >
         </form>" ;
         $przyciski_div2 = "

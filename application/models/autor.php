@@ -24,6 +24,8 @@ class Autor extends CI_Model
 		$this->db->insert('autor', $dane);
 		return $this->db->insert_id();
 	}
+
+
 }	
 
 ?>

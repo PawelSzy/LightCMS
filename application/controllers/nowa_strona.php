@@ -5,73 +5,14 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->model('artykuly');
 			$this->load->helper('url');
+			
+			
 		}
 
 		public function index()
 		{
-			if ( $this->session->userdata('login') === false )
-			{
-				//Uzytkownik niezalogowany
-				redirect('/zaloguj/', 'refresh');
-			}
-
-
-			$data['title'] = "Nowa strona";
-			$this->load->helper('url');
- 			$this->load->helper('form');
- 			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."nowa_strona/zapisz/";
- 			
- 			$data['header'] = anchor("", "LightCMS" );
-
-			$this->load->library('parser');
-
-			$this->parser->parse('head', $data);
-			#$this->load->view('head', $data);
-			$this->load->view('body_start');
-			$this->parser->parse('header', $data);
-
-			$this->load->view('nowa_strona_form', $data);
-
-			$this->load->view('stopka');
-			$this->load->view('body_end');
-
+			redirect('/edytuj/index/', 'refresh');
 		}
-
-		public function zapisz() 
-		{
-			$this->load->library('form_validation');
-			$this->load->database();
-
-			$this->load->helper('url');
-
-
-			if ( $this->session->userdata('login') === false )
-			{
-				//Uzytkownik niezalogowany
-				redirect('/zaloguj/', 'refresh');
-			}	
-			else 
-			{
-				// Uzytkownik zalogowany
-				$artykul = array 
-				(
-					'autor_id' => $this->session->userdata('autor_id'), 
-					'tytul' => $this->input->post('tytul'),
-					'tekst'	=> $this->input->post('tresc')		
-				);
-
-
-				$this->artykuly->zapisz($artykul);
-				echo "informacja zapisana";
-				redirect('', 'refresh');
-
-			}
-			echo "informacja zapisana";
-		}
-
-		
 	}
-
 ?>

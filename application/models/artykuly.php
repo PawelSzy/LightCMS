@@ -52,6 +52,14 @@ class Artykuly extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	public function zmien_dane($dane)
+	{
+		$this->db->insert('artykuly', $dane);
+		$where = "author_id =".$dane['autor_id']."AND tytul =".$dane['tytul']; 
+		return $this->db->update_string('artykuly', $dane, $where);
+	}
+
+
 	public function zamien_id_na_autora( $id )
 	{
 		$this->db->select('login');

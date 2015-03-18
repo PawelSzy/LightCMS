@@ -5,9 +5,9 @@
 	<?php echo validation_errors();?>
 	<form class="form_vraper" action={przycisk_zapisz_akcja_do_wykonania} method='post' accept-charset="utf-8">
 		Tytul artykulu:<br>	
-		<input type="text" name="tytul" class="small_form"><br><br>
+		<input type="text" name="tytul" class="small_form" value={tytul_artykulu}><br><br>
 		Wpisz nowy artykul:<br>
-		<textarea name="tresc"  class="big_form" ></textarea>
+		<textarea name="tresc"  class="big_form" >{tekst}</textarea>
 		<br>
 		<input type="submit" value="Zapisz">
 		<br>
