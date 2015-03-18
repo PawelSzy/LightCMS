@@ -20,11 +20,10 @@
 
 			$data['title'] = "Nowa strona";
 			$this->load->helper('url');
- 			
  			$this->load->helper('form');
+ 			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."nowa_strona/zapisz/";
  			
  			$data['header'] = anchor("", "LightCMS" );
-
 
 			$this->load->library('parser');
 
@@ -33,7 +32,7 @@
 			$this->load->view('body_start');
 			$this->parser->parse('header', $data);
 
-			$this->load->view('nowa_strona_form');
+			$this->load->view('nowa_strona_form', $data);
 
 			$this->load->view('stopka');
 			$this->load->view('body_end');
@@ -71,6 +70,7 @@
 			}
 			echo "informacja zapisana";
 		}
+
 		
 	}
 
