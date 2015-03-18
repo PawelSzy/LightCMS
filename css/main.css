@@ -150,7 +150,7 @@ h1 {
 
 .przycisk {
   font-size: 1.4em;
-
+  width: 6em;
   text-align: center;
   background-color: #BD9F86;
   color: white;

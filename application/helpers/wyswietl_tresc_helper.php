@@ -61,13 +61,15 @@ if ( ! function_exists('utworz_boczne_przyciski'))
 {	
 	function utworz_boczne_przyciski() 
 	{
+		
+
 		$przyciski_div1 = "
-		<form method='post' action='http://localhost/xampp/LightCMS/index.php/nowa_strona/'>
+		<form method='post' action=".base_url()."index.php/nowa_strona/>
   			<input type='submit' class='przycisk' name='nowa_strona' value='Nowa strona'  >
-        </form>";
+        </form>" ;
         $przyciski_div2 = "
-        <form method='post' action='http://localhost/xampp/LightCMS/index.php/edytuj/'>
-  			<input type='submit' class='przycisk' name='edytuj' value='edytuj'  >
+        <form method='post' action=".base_url()."index.php/edytuj/>
+  			<input type='submit' class='przycisk' name='edytuj' value='Edytuj'  >
         </form>"  ;  		
         return  $przyciski_div1.$przyciski_div2 ;   
 	}

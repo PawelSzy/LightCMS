@@ -71,10 +71,10 @@
  			$data['content'] = "";
 			
 
-			$data['artykuly'] = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
+			$artykuly = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
 			#$data['boczny_pasek'] = '<input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  >';
 
-			foreach ($data['artykuly'] as $artykul) 
+			foreach ($artykuly as $artykul) 
 			{
 				$text = auto_typography($artykul['tekst']);
 				
