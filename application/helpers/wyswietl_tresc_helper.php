@@ -61,15 +61,30 @@ if ( ! function_exists('utworz_boczne_przyciski'))
 {	
 	function utworz_boczne_przyciski() 
 	{
-		
+
+		//uzyj regular expresion do 
+		//wyciagniecia nazwy artukulu z url strony
+		$url = current_url();
+		$reg_expresion = "{index.php/index/index/}" ; 
+		$preg_split = preg_split($reg_expresion , $url );
+		if ( isset( $preg_split[1] )) {
+			$nazwa_artykulu = $preg_split[1];
+		} else {
+			$nazwa_artykulu = "";
+		}	
+
+		// utworz url ktor prowadzi do controlera edytuj
+		$edytuj_action = base_url()."index.php/edytuj/index/".$nazwa_artykulu;
+
+		//var_dump( $nazwa_artykulu ); //$ereg
+		//var_dump ( $edytuj_action );
 
 		$przyciski_div1 = "
 		<form method='post' action=".base_url()."index.php/edytuj/index/>
   			<input type='submit' class='przycisk' name='nowa_strona' value='Nowa strona'  >
         </form>" ;
         $przyciski_div2 = "
-        <form method='post' action=".base_url()."index.php/edytuj/>
-  			<input type='submit' class='przycisk' name='edytuj' value='Edytuj'  >
+        <form method='post' action=".$edytuj_action.">"."<input type='submit' class='przycisk' name='edytuj' value='Edytuj'  >
         </form>"  ;  		
         return  $przyciski_div1.$przyciski_div2 ;   
 	}

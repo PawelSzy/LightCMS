@@ -25,8 +25,6 @@
 
 			if( $page_name !== "" ){
 				$artykuly = $this->artykuly->pobierz_artykul( $page_name);
-				var_dump($page_name);
-				var_dump($artykuly);
 				$data['tytul_artykulu'] = $artykuly[0]['tytul'];
 				$data['tekst'] = $artykuly[0]['tekst'];
 			}
