@@ -1,12 +1,16 @@
 <?php 
+
+include 'wyswietl_tresc_trait.php';
+
 	class Index extends CI_Controller
 	{
+		use wyswietl_tresc_trait { wyswietl_tresc as private; utworz_log_block as private; utworz_boczne_przyciski as private;}
 
 		public function __construct()
 		{
 			parent::__construct();
 			$this->load->library('session');
-			$this->load->helper('wyswietl_tresc');
+			#$this->load->helper('wyswietl_tresc');
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
 			$this->load->helper('url');
@@ -59,7 +63,7 @@
     	        $data['content'] = $data['content']."<hr>";
 			}
 
-			wyswietl_tresc( $data, $this ); //zaladowany helper wyswietl tresc
+			$this->wyswietl_tresc( $data); //zaladowany helper wyswietl tresc
 		}
 
 		private function main_page() 
@@ -91,7 +95,7 @@
 			$data['content'] = $data['content']."<br>".anchor("/pokaz_liste", "Pokaz wszystkie artykuly");
 
 			
-			wyswietl_tresc( $data, $this ); //zaladowany helper wyswietl tresc
+			$this->wyswietl_tresc($data); //zaladowany helper wyswietl tresc
 
 		}
 
