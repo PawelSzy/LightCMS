@@ -5,10 +5,7 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 
 ******************************************
 
-ob³suga b³êdów przy zapisie
 
 delete
-
-szyfrowanie has³a przy zapisie 
 
 logo z linkiem w header
