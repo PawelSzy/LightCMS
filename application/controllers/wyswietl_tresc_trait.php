@@ -76,8 +76,6 @@ trait wyswietl_tresc_trait {
 		// utworz url ktor prowadzi do controlera edytuj
 		$edytuj_action = base_url()."index.php/edytuj/index/".$nazwa_artykulu;
 
-		//var_dump( $nazwa_artykulu ); //$ereg
-		//var_dump ( $edytuj_action );
 
 		$przyciski_div1 = "
 		<form method='post' action=".base_url()."index.php/edytuj/index/>

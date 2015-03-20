@@ -10,7 +10,6 @@ include 'wyswietl_tresc_trait.php';
 		{
 			parent::__construct();
 			$this->load->library('session');
-			#$this->load->helper('wyswietl_tresc');
 			$this->load->model('artykuly');
 			$this->load->helper('typography');
 			$this->load->helper('url');
@@ -47,6 +46,7 @@ include 'wyswietl_tresc_trait.php';
 			} 
 
 			$data['title'] = $data[$page_name][0]['tytul'];
+			$data['artykul_id'] = $data[$page_name][0]['id'];
 			#$data['boczny_pasek'] = ' <input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  >' ;
 
 			foreach ($data[$page_name] as $artykul) 
@@ -63,7 +63,7 @@ include 'wyswietl_tresc_trait.php';
     	        $data['content'] = $data['content']."<hr>";
 			}
 
-			$this->wyswietl_tresc( $data); //zaladowany trai wyswietl tresc
+			$this->wyswietl_tresc( $data); //zaladowany trait wyswietl tresc
 		}
 
 		private function main_page() 
@@ -94,7 +94,7 @@ include 'wyswietl_tresc_trait.php';
 			$data['content'] = $data['content']."<br>".anchor("/pokaz_liste", "Pokaz wszystkie artykuly");
 
 			
-			$this->wyswietl_tresc($data); //zaladowany trai wyswietl tresc
+			$this->wyswietl_tresc($data); //zaladowany trait wyswietl tresc
 
 		}
 

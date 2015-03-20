@@ -8,6 +8,7 @@ class Artykuly extends CI_Model
 	
 	public function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
 	}
 
@@ -54,16 +55,14 @@ class Artykuly extends CI_Model
 
 	public function zmien_dane($dane)
 	{
-		
-		// $where = "author_id =".$dane['autor_id']."AND tytul ='".$dane['tytul']."'"; 
-		// var_dump($where);
-		// var_dump($dane);
-		// $str = $this->db->update_string('artykuly', $dane, $where);
-		// var_dump($str);
-		// return $str;
 		$where_array = array('autor_id' => $dane['autor_id'], 'tytul' => $dane['tytul']);
 		$this->db->where($where_array);
 		$this->db->update('artykuly', $dane);
+	}
+
+	public function usun_artykul( $id ) 
+	{
+		$this->db->delete( 'artykuly', array( 'id' => $id )); 
 	}
 
 
@@ -88,6 +87,8 @@ class Artykuly extends CI_Model
 		
 		return $new_table;
 	}
+
+
 }	
 
 ?>
