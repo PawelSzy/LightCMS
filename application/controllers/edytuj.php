@@ -20,13 +20,17 @@
 				redirect('/zaloguj/', 'refresh');
 			}
 
-			$data['tytul_artykulu'] ="";
-			$data['tekst'] ="";
 
+
+			//przekazana wartosc (nazwa artykulu) do funkcji - edytuj wybrany dokumeny
 			if( $page_name !== "" ){
 				$artykuly = $this->artykuly->pobierz_artykul( $page_name);
 				$data['tytul_artykulu'] = $artykuly[0]['tytul'];
 				$data['tekst'] = $artykuly[0]['tekst'];
+			} else {
+				//utworz nowy artykul
+				$data['tytul_artykulu'] ="";
+				$data['tekst'] ="";
 			}
 
 			$data['title'] = "Nowa strona";
@@ -34,17 +38,17 @@
  			$this->load->helper('form');
  			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."index.php/edytuj/zapisz/".$page_name;
  			
+ 			//utworz przycisk edytuj
  			$data['header'] = anchor("", "LightCMS" );
 
 			$this->load->library('parser');
 
 			$this->parser->parse('head', $data);
-			#$this->load->view('head', $data);
 			$this->load->view('body_start');
 			$this->parser->parse('header', $data);
-
+			//**************************************************//
 			$this->parser->parse('nowa_strona_form', $data);
-
+			//**************************************************//
 			$this->load->view('stopka');
 			$this->load->view('body_end');
 
@@ -75,7 +79,7 @@
 				);
 
 				if ( $page_name !== "" )
-				{
+				{	
 					$this->artykuly->zmien_dane($artykul);
 				}
 				else 

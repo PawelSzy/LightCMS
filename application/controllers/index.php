@@ -63,7 +63,7 @@ include 'wyswietl_tresc_trait.php';
     	        $data['content'] = $data['content']."<hr>";
 			}
 
-			$this->wyswietl_tresc( $data); //zaladowany helper wyswietl tresc
+			$this->wyswietl_tresc( $data); //zaladowany trai wyswietl tresc
 		}
 
 		private function main_page() 
@@ -76,7 +76,6 @@ include 'wyswietl_tresc_trait.php';
 			
 
 			$artykuly = $this->artykuly->pobierz_artykuly(ILOSC_ARTYKULOW_NA_GLOWNEJ);
-			#$data['boczny_pasek'] = '<input type="submit" class="przycisk" name="nowa_strona" value="Nowa strona"  >';
 
 			foreach ($artykuly as $artykul) 
 			{
@@ -95,7 +94,7 @@ include 'wyswietl_tresc_trait.php';
 			$data['content'] = $data['content']."<br>".anchor("/pokaz_liste", "Pokaz wszystkie artykuly");
 
 			
-			$this->wyswietl_tresc($data); //zaladowany helper wyswietl tresc
+			$this->wyswietl_tresc($data); //zaladowany trai wyswietl tresc
 
 		}
 
