@@ -30,6 +30,7 @@ trait wyswietl_tresc_trait {
 
 		function utworz_log_block() 
 		{
+			//tworzy pasek z logowaniem 
 			$session_data = $this->session->all_userdata();
 			$nowy_uzytkownik = anchor( "/nowy_autor/", "zarejestruj sie" );
 			$zaloguj = anchor( "/zaloguj/", "zaloguj" );
@@ -69,21 +70,41 @@ trait wyswietl_tresc_trait {
 		$preg_split = preg_split($reg_expresion , $url );
 		if ( isset( $preg_split[1] )) {
 			$nazwa_artykulu = $preg_split[1];
+			$tworz_przycisk_usun = True;
+			$tworz_przycisk_edytuj = True;
 		} else {
 			$nazwa_artykulu = "";
+			$tworz_przycisk_edytuj = False;
+			$tworz_przycisk_usun = False;
+
 		}	
 
-		// utworz url ktor prowadzi do controlera edytuj
-		$edytuj_action = base_url()."index.php/edytuj/index/".$nazwa_artykulu;
-
+		// utworz url ktor prowadzi do controlera edytuj i usun artykul
+		$edytuj_action = base_url()."index.php/edytuj/index/".$nazwa_artykulu."";
+		$usun_action = base_url()."index.php/usun_artykul/index/".$nazwa_artykulu."";
 
 		$przyciski_div1 = "
 		<form method='post' action=".base_url()."index.php/edytuj/index/>
   			<input type='submit' class='przycisk' name='nowa_strona' value='Nowa strona'  >
         </form>" ;
-        $przyciski_div2 = "
-        <form method='post' action=".$edytuj_action.">"."<input type='submit' class='przycisk' name='edytuj' value='Edytuj'  >
-        </form>"  ;  		
-        return  $przyciski_div1.$przyciski_div2 ;   
+        $przyciski_div2 = NULL;
+        $przyciski_div3 = NULL;
+
+ 	
+ 	     if ( $tworz_przycisk_edytuj == True )
+        {
+         	$przyciski_div2 = "
+        	<form method='post' action=".$edytuj_action.">"."<input type='submit' class='przycisk' name='edytuj' value='Edytuj'  >
+        	</form>"  ;        	
+		}
+        if ( $tworz_przycisk_usun == True )
+        {
+ 	
+       		$przyciski_div3 = "
+        	<form method='post' action=".$usun_action.">"."<input type='submit' class='przycisk' name='usun' value='Usun'  >
+        	</form>"  ;  
+
+        }
+        return  $przyciski_div1.$przyciski_div2.$przyciski_div3 ;   
 	}
 }

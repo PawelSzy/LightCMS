@@ -62,7 +62,7 @@ class Artykuly extends CI_Model
 
 	public function usun_artykul( $id ) 
 	{
-		$this->db->delete( 'artykuly', array( 'id' => $id )); 
+		$this->db->delete( 'artykuly', array( 'tytul' => $id )); 
 	}
 
 

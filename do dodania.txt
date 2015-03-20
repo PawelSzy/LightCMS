@@ -6,6 +6,6 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 ******************************************
 
 
-delete
+Edytuj i usun nie dziala na url z spacja
 
 logo z linkiem w header
