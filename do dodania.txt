@@ -6,6 +6,11 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 ******************************************
 
 
-Edytuj i usun nie dziala na url z spacja
+
+usun i edytuj tylko artykuly ktore napisales
+
+zamien H1 w tytule na link
+
+ulepszone wpisywanie w form
 
 logo z linkiem w header

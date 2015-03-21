@@ -55,9 +55,13 @@ class Artykuly extends CI_Model
 
 	public function zmien_dane($dane)
 	{
-		$where_array = array('autor_id' => $dane['autor_id'], 'tytul' => $dane['tytul']);
+
+		var_dump($dane);
+		$stary_tytul = urldecode(  $dane['stary_tytul'] );
+		$autor_id =  $dane['artykul']['autor_id'];
+		$where_array = array('autor_id' => $autor_id, 'tytul' => $stary_tytul);
 		$this->db->where($where_array);
-		$this->db->update('artykuly', $dane);
+		$this->db->update('artykuly', $dane['artykul']);
 	}
 
 	public function usun_artykul( $id ) 

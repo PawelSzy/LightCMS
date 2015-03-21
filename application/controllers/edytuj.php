@@ -27,6 +27,8 @@
 				$artykuly = $this->artykuly->pobierz_artykul( $page_name);
 				$data['tytul_artykulu'] = $artykuly[0]['tytul'];
 				$data['tekst'] = $artykuly[0]['tekst'];
+				#var_dump($data['tytul_artykulu']);
+				#var_dump($data['tekst']);
 			} else {
 				//utworz nowy artykul
 				$data['tytul_artykulu'] ="";
@@ -38,6 +40,7 @@
  			$this->load->helper('form');
  			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."index.php/edytuj/zapisz/".$page_name;
  			
+
  			//utworz przycisk edytuj
  			$data['header'] = anchor("", "LightCMS" );
 
@@ -75,12 +78,15 @@
 				(
 					'autor_id' => $this->session->userdata('autor_id'), 
 					'tytul' => $this->input->post('tytul'),
-					'tekst'	=> $this->input->post('tresc')		
+					'tekst'	=> $this->input->post('tresc')
 				);
+				$data['artykul'] = $artykul;
+				$data['stary_tytul'] = $page_name;
 
 				if ( $page_name !== "" )
 				{	
-					$this->artykuly->zmien_dane($artykul);
+
+					$this->artykuly->zmien_dane($data);
 				}
 				else 
 				{
@@ -88,7 +94,7 @@
 				}
 				
 				echo "informacja zapisana";
-				redirect('', 'refresh');
+				#redirect('', 'refresh');
 
 			}
 			echo "informacja zapisana";
