@@ -74,6 +74,14 @@
 			else 
 			{
 				// Uzytkownik zalogowany
+
+				//validacja form
+				$this->form_validation->set_rules('tytul', 'Login', 'required|alpha_dash');
+				if ($this->form_validation->run() == FALSE)
+				{
+					redirect('../index.php/edytuj/index/'.urldecode($page_name), 'refresh');
+				}				
+				
 				$artykul = array 
 				(
 					'autor_id' => $this->session->userdata('autor_id'), 
@@ -84,12 +92,11 @@
 				$data['stary_tytul'] = $page_name;
 
 				if ( $page_name !== "" )
-				{	
-
+				{	//zmien dane w isniejacej stronie
 					$this->artykuly->zmien_dane($data);
 				}
 				else 
-				{
+				{	// utworz nowa strone
 					$this->artykuly->zapisz($artykul);
 				}
 				

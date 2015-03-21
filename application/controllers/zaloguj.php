@@ -14,7 +14,6 @@
 
 		public function index()
 		{
-
 			$data['title'] = "Zaloguj";
 			$this->load->helper('url');
  			
@@ -45,6 +44,18 @@
 			$haslo = $this->input->post('haslo');
 			$login = $this->input->post('login');
 
+
+
+			//validacja form
+			$list_autorow = $this->autor->lista_autorow();
+
+			$this->form_validation->set_rules('login', 'Login', 'required');
+			$this->form_validation->set_rules('haslo', 'haslo', 'required');
+			if ($this->form_validation->run() == FALSE)
+			{
+				redirect('../index.php/zaloguj', 'refresh');
+			}
+
 			$dane_autora = $this->autor->pobierz_autora( $login );
 			$passwordHash = $dane_autora[0]['hash'];
 
@@ -63,7 +74,7 @@
 			}
 			else 
 			{
-				echo "nieudane logowanie";
+				echo "nieudane logowanie, zle haslo";
 				redirect('/zaloguj/', 'refresh');
 			}
 		}

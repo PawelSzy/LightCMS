@@ -44,6 +44,13 @@
 			$this->load->helper('url');
 			$haslo = $this->input->post('haslo');
 
+			//validacja form
+			$this->form_validation->set_rules('login', 'Login', 'required|alpha_dash|is_unique[autor.login]');
+			$this->form_validation->set_rules('haslo', 'haslo', 'required|alpha_dash');
+			if ($this->form_validation->run() == FALSE)
+			{
+				redirect('../index.php/nowy_autor', 'refresh');
+			}
 
 			$passwordHash = password_hash($haslo, PASSWORD_DEFAULT);
 			$login = $this->input->post('login');

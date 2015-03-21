@@ -5,12 +5,9 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 
 ******************************************
 
-zobacz czy istnieje uzytkownik przy logowaniu
 
 usun i edytuj tylko artykuly ktore napisales
 
-zamien H1 w tytule na link
+pozmieniaj linki na posrednie (bez local_host)
 
-ulepszone wpisywanie w form
-
-logo z linkiem w header
+wyswietla hasla jakie sa popelnione przy wpisywanie w form

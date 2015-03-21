@@ -25,9 +25,14 @@ hr {
     color: #F2F2F2;
 } 
 
-h1 {
+h1  {
   color: #BD9F86;
   font-size: 1.6em;
+  
+}
+
+h1 a {
+  text-decoration: none;
 }
 
 
@@ -54,10 +59,6 @@ h1 {
   order: 3;
 }
 
-
-
-
-
 #naglowek1 {
   order 1;
   width: 100%;
@@ -75,6 +76,11 @@ h1 {
 
   color: #BD9F86;
   text-decoration: none;
+}
+
+.logo {
+  float: left;
+  background-color: #F2F2F2;
 }
 
 .log_info {

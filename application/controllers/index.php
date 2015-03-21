@@ -84,7 +84,7 @@ include 'wyswietl_tresc_trait.php';
 				$autor =$artykul['autor'];
 				$tytul = $artykul['tytul'];
 
-				$data['content'] = $data['content']."<h1>".$tytul."</h1>";
+				$data['content'] = $data['content']."<h1>".anchor("/index/index/".$tytul, $tytul )."</h1>";
 				$data['content'] = $data['content'].$text;
     	        $data['content'] = $data['content']."<br>"."Autor:"."<br>".$autor."<br>";
     	        $data['content'] = $data['content']."<br>"."Link: ".anchor("/index/index/".$tytul, $tytul );

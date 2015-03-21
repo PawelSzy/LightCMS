@@ -33,6 +33,19 @@ class Autor extends CI_Model
 		$autor = $query->result_array();
 		return ( empty( $autor ) ? False : True );
 	}
+
+	public function lista_autorow() 
+	{
+		$this->db->select('login');
+		$query = $this->db->get('autor');
+		$tablica=  $query->result_array();
+		$return_array = array();
+		foreach ($tablica as $key => $value) 
+		{
+			$return_array[] = $value['login'];
+		}	
+		return $return_array;	
+	}
 }	
 
 ?>
