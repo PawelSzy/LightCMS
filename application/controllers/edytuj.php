@@ -76,7 +76,14 @@
 				// Uzytkownik zalogowany
 
 				//validacja form
-				$this->form_validation->set_rules('tytul', 'Login', 'required|alpha_dash');
+				if ( $page_name == "") {
+					//nowy artykul
+					$this->form_validation->set_rules('tytul', 'tytul', 'required|callback__alpha_dash_space|is_unique[artykuly.tytul]');
+				} else {
+					//istniejacy artykul
+					$this->form_validation->set_rules('tytul', 'tytul', 'required|callback__alpha_dash_space|');
+				}
+
 				if ($this->form_validation->run() == FALSE)
 				{
 					redirect('../index.php/edytuj/index/'.urldecode($page_name), 'refresh');
@@ -106,6 +113,11 @@
 			}
 			echo "informacja zapisana";
 		}
+
+		private function  alpha_dash_space($str)
+		{
+		    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+		} 
 
 		
 	}

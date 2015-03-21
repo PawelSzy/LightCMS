@@ -45,8 +45,8 @@
 			$haslo = $this->input->post('haslo');
 
 			//validacja form
-			$this->form_validation->set_rules('login', 'Login', 'required|alpha_dash|is_unique[autor.login]');
-			$this->form_validation->set_rules('haslo', 'haslo', 'required|alpha_dash');
+			$this->form_validation->set_rules('login', 'Login', 'required|callback__alpha_dash_space|is_unique[autor.login]');
+			$this->form_validation->set_rules('haslo', 'haslo', 'required|callback__alpha_dash_space');
 			if ($this->form_validation->run() == FALSE)
 			{
 				redirect('../index.php/nowy_autor', 'refresh');
@@ -85,6 +85,11 @@
 			redirect('', 'refresh');
 			echo "utworzono nowego autora\n";
 		}
+
+		private function  alpha_dash_space($str)
+		{
+		    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+		} 		
 		
 	}
 
