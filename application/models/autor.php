@@ -25,7 +25,14 @@ class Autor extends CI_Model
 		return $this->db->insert_id();
 	}
 
-
+	public function czy_autor_istnieje( $login )
+	{
+		$this->db->where('login', $login);
+		$this->db->select('login');
+		$query = $this->db->get('autor');
+		$autor = $query->result_array();
+		return ( empty( $autor ) ? False : True );
+	}
 }	
 
 ?>

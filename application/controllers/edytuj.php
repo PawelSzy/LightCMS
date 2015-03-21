@@ -94,7 +94,7 @@
 				}
 				
 				echo "informacja zapisana";
-				#redirect('', 'refresh');
+				redirect('', 'refresh');
 
 			}
 			echo "informacja zapisana";

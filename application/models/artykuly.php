@@ -55,8 +55,6 @@ class Artykuly extends CI_Model
 
 	public function zmien_dane($dane)
 	{
-
-		var_dump($dane);
 		$stary_tytul = urldecode(  $dane['stary_tytul'] );
 		$autor_id =  $dane['artykul']['autor_id'];
 		$where_array = array('autor_id' => $autor_id, 'tytul' => $stary_tytul);

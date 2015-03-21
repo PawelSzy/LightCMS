@@ -40,11 +40,9 @@
 		public function logowanie() 
 		{
 			$this->load->library('form_validation');
-
 			$this->load->helper('url');
 
 			$haslo = $this->input->post('haslo');
-
 			$login = $this->input->post('login');
 
 			$dane_autora = $this->autor->pobierz_autora( $login );

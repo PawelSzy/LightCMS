@@ -39,25 +39,44 @@
 
 		public function zapisz() 
 		{
+			// utworz nowego autora w bazie danych
 			$this->load->library('form_validation');
-
 			$this->load->helper('url');
-
 			$haslo = $this->input->post('haslo');
 
 
 			$passwordHash = password_hash($haslo, PASSWORD_DEFAULT);
+			$login = $this->input->post('login');
 
 			$nowy_autor = array 
 			(
-				'login' => $this->input->post('login'),
+				'login' => $login,
 				'hash'	=> $passwordHash,
 				'uprawnienia' => "w"
 			);
 
-			$this->autor->zapisz($nowy_autor);
+			// sprawdz czy istnieje autor
+			if ( $this->autor->czy_autor_istnieje($login) == False)
+			{
+				$this->autor->zapisz($nowy_autor);
+				echo "utworzono nowego autora\n";
+			}
 
-			echo "informacja zapisana";
+			//zaloguj sie
+			$dane_autora = $this->autor->pobierz_autora( $login );
+			if ( password_verify($haslo, $passwordHash))
+			{
+				echo "zostales zalogowany\n";
+				$dane_sesji = array(
+                   'login'  => $dane_autora[0]['login'],
+                   'zalogowany' => TRUE,
+                   'uprawnienia' => $dane_autora[0]['uprawnienia'],
+                   'autor_id' => (int)$dane_autora[0]['autor_id']
+               );
+				$this->session->set_userdata($dane_sesji);
+			}
+			redirect('', 'refresh');
+			echo "utworzono nowego autora\n";
 		}
 		
 	}
