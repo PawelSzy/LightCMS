@@ -7,6 +7,7 @@
 			parent::__construct();
 			$this->load->model('artykuly');
 			$this->load->helper('url');
+			$this->load->library('parser');
 
 		}
 
@@ -36,25 +37,8 @@
 			}
 
 			$data['title'] = "Nowa strona";
-			$this->load->helper('url');
- 			$this->load->helper('form');
- 			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."index.php/edytuj/zapisz/".$page_name;
- 			
 
- 			//utworz przycisk edytuj
- 			$data['header'] = anchor("", "LightCMS" );
-
-			$this->load->library('parser');
-
-			$this->parser->parse('head', $data);
-			$this->load->view('body_start');
-			$this->parser->parse('header', $data);
-			//**************************************************//
-			$this->parser->parse('nowa_strona_form', $data);
-			//**************************************************//
-			$this->load->view('stopka');
-			$this->load->view('body_end');
-
+			$this->parse_page($data, $page_name);
 		}
 
 		public function zapisz($page_name="") 
@@ -74,6 +58,13 @@
 			else 
 			{
 				// Uzytkownik zalogowany
+				$artykul = array 
+				(
+					'autor_id' => $this->session->userdata('autor_id'), 
+					'tytul' => $this->input->post('tytul'),
+					'tekst'	=> $this->input->post('tresc')
+				);
+
 
 				//validacja form
 				if ( $page_name == "") {
@@ -86,32 +77,29 @@
 
 				if ($this->form_validation->run() == FALSE)
 				{
-					redirect('../index.php/edytuj/index/'.urldecode($page_name), 'refresh');
-				}				
-				
-				$artykul = array 
-				(
-					'autor_id' => $this->session->userdata('autor_id'), 
-					'tytul' => $this->input->post('tytul'),
-					'tekst'	=> $this->input->post('tresc')
-				);
-				$data['artykul'] = $artykul;
-				$data['stary_tytul'] = $page_name;
-
-				if ( $page_name !== "" )
-				{	//zmien dane w isniejacej stronie
-					$this->artykuly->zmien_dane($data);
-				}
+					//nieudana walidacja
+					$this->parse_page($artykul, $page_name);
+					#redirect('../index.php/edytuj/index/'.urldecode($page_name), 'refresh');
+				}	
 				else 
-				{	// utworz nowa strone
-					$this->artykuly->zapisz($artykul);
+				{			
+					//Udana walidacja danych
+					if ( $page_name !== "" )
+					{	//zmien dane w isniejacej stronie
+						$dane['stary_tytul'] = $page_name;
+						$dane['artykul'] = $artykul;
+						$this->artykuly->zmien_dane($dane);
+						echo "informacja zapisana";
+						redirect('', 'refresh');
+					}
+					else 
+					{	// utworz nowa strone
+						$this->artykuly->zapisz($artykul);
+						echo "informacja zapisana";
+						redirect('', 'refresh');	
+					}
 				}
-				
-				echo "informacja zapisana";
-				redirect('', 'refresh');
-
-			}
-			echo "informacja zapisana";
+			}	
 		}
 
 		private function  alpha_dash_space($str)
@@ -119,7 +107,24 @@
 		    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
 		} 
 
-		
+		private function parse_page($data, $page_name)
+		{
+			$this->load->helper('url');
+ 			$this->load->helper('form');
+ 			$data['przycisk_zapisz_akcja_do_wykonania'] = base_url()."index.php/edytuj/zapisz/".$page_name;
+ 			
+ 			//utworz przycisk edytuj
+ 			$data['header'] = anchor("", "LightCMS" );
+
+			$this->parser->parse('head', $data);
+			$this->load->view('body_start');
+			$this->parser->parse('header', $data);
+			//**************************************************//
+			$this->parser->parse('nowa_strona_form', $data);
+			//**************************************************//
+			$this->load->view('stopka');
+			$this->load->view('body_end');
+		}
 	}
 
 ?>

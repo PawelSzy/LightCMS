@@ -2,8 +2,9 @@
 
 
 <div class="container" >
-	<?php echo validation_errors();?>
+	
 	<form class="form_vraper" action='{przycisk_zapisz_akcja_do_wykonania}' method='post' accept-charset="utf-8">
+		<?php echo validation_errors();?>
 		Tytul artykulu:<br>	
 		<input type="text" name="tytul" class="small_form" value='{tytul_artykulu}' ><br><br>
 		Wpisz nowy artykul:<br>

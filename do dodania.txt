@@ -6,8 +6,8 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 ******************************************
 
 
-usun i edytuj tylko artykuly ktore napisales
+wyswyietl napis: usun i edytuj tylko artykuly ktore napisales 
 
 pozmieniaj linki na posrednie (bez local_host)
 
-wyswietla hasla jakie sa popelnione przy wpisywanie w form
+wyswietla bledy jakie sa popelnione przy wpisywanie w form
