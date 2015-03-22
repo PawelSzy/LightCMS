@@ -6,6 +6,7 @@
 		{
 			parent::__construct();
 			$this->load->model('artykuly');
+			$this->lang->load('form_validation', 'polski');
 			$this->load->helper('url');
 			$this->load->library('parser');
 
@@ -69,10 +70,10 @@
 				//validacja form
 				if ( $page_name == "") {
 					//nowy artykul
-					$this->form_validation->set_rules('tytul', 'tytul', 'required|callback__alpha_dash_space|is_unique[artykuly.tytul]');
+					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|is_unique[artykuly.tytul]');
 				} else {
 					//istniejacy artykul
-					$this->form_validation->set_rules('tytul', 'tytul', 'required|callback__alpha_dash_space|');
+					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|');
 				}
 
 				if ($this->form_validation->run() == FALSE)
@@ -102,9 +103,9 @@
 			}	
 		}
 
-		private function  alpha_dash_space($str)
+		public function  alpha_dash_space($str)
 		{
-		    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+		    return ( ! preg_match("/^([-a-z0-9_ ])+$/i", $str)) ? FALSE : TRUE;
 		} 
 
 		private function parse_page($data, $page_name)

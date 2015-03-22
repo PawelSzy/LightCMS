@@ -9,6 +9,7 @@
 		{
 			parent::__construct();
 			$this->load->model('autor');
+			$this->lang->load('form_validation', 'polski');
 			#require 'password.php';
 		}
 
@@ -33,8 +34,8 @@
 			$data['header'] = anchor("", "LightCMS" );
 
 			//validacja form
-			$this->form_validation->set_rules('login', 'Login', 'required|callback__alpha_dash_space|is_unique[autor.login]');
-			$this->form_validation->set_rules('haslo', 'haslo', 'required|callback__alpha_dash_space');
+			$this->form_validation->set_rules('login', 'lang:Login', 'required|callback_alpha_dash_space|is_unique[autor.login]');
+			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required|callback_alpha_dash_space');
 			if ($this->form_validation->run() == FALSE)
 			{
 				//nieudana walidacja 
@@ -45,7 +46,6 @@
 				//udana walidacja
 				$login = $this->input->post('login');
 				$passwordHash = password_hash($haslo, PASSWORD_DEFAULT);
-
 
 				$nowy_autor = array 
 				(
@@ -80,9 +80,9 @@
 		}
 
 
-		private function  alpha_dash_space($str)
+		public function  alpha_dash_space($str)
 		{
-		    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+		    return ( ! preg_match("/^([-a-z0-9_ ])+$/i", $str)) ? FALSE : TRUE;
 		} 		
 		
 		private function parse_nowy_autor_page($data)

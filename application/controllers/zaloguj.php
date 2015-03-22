@@ -27,6 +27,7 @@
 		public function logowanie() 
 		{
 			$this->load->library('form_validation');
+			$this->lang->load('form_validation', 'polski');
 			$this->load->helper('url');
 			$data['header'] = anchor("", "LightCMS" );
 
@@ -38,8 +39,8 @@
 			//validacja form
 			$list_autorow = $this->autor->lista_autorow();
 
-			$this->form_validation->set_rules('login', 'Login', 'required');
-			$this->form_validation->set_rules('haslo', 'haslo', 'required');
+			$this->form_validation->set_rules('login', 'lang:Login', 'required');
+			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required');
 			if ($this->form_validation->run() == FALSE)
 			{
 				//nieudana walidacja
@@ -47,7 +48,7 @@
 			}
 			else
 			{
-				//idana walidacja
+				//udana walidacja
 				$dane_autora = $this->autor->pobierz_autora( $login );
 				$passwordHash = $dane_autora[0]['hash'];
 
