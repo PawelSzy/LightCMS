@@ -76,13 +76,19 @@
 		private function parse_zaloguj_page($data)
 		{
 			$this->load->library('parser');
+			$this->load->helper('form');
+
+			//<form class="form_vraper" action="../index.php/zaloguj/logowanie" method='post' accept-charset="utf-8">
+
+			$attributes = array('class' => 'form_vraper');
+			$data['form_start'] = form_open('zaloguj/logowanie', $attributes);
 
 			$this->parser->parse('head', $data);
 			#$this->load->view('head', $data);
 			$this->load->view('body_start');
 			$this->parser->parse('header', $data);
 
-			$this->load->view('zaloguj');
+			$this->parser->parse('zaloguj', $data);
 
 			$this->load->view('stopka');
 			$this->load->view('body_end');

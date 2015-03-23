@@ -88,13 +88,17 @@
 		private function parse_nowy_autor_page($data)
 		{
 			$this->load->library('parser');
+			$this->load->helper('form');
+
+			$attributes = array('class' => 'form_vraper');
+			$data['form_start'] = form_open('nowy_autor/zapisz"', $attributes);
 
 			$this->parser->parse('head', $data);
 			#$this->load->view('head', $data);
 			$this->load->view('body_start');
 			$this->parser->parse('header', $data);
 
-			$this->load->view('nowy_autor_form');
+			$this->parser->parse('nowy_autor_form', $data);
 
 			$this->load->view('stopka');
 			$this->load->view('body_end');
