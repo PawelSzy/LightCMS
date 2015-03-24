@@ -34,8 +34,8 @@
 			$data['header'] = anchor("", "LightCMS" );
 
 			//validacja form
-			$this->form_validation->set_rules('login', 'lang:Login', 'required|callback_alpha_dash_space|is_unique[autor.login]');
-			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required|callback_alpha_dash_space');
+			$this->form_validation->set_rules('login', 'lang:Login', 'required|callback_alpha_dash_space|is_unique[autor.login]|xss_clean');
+			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required|callback_alpha_dash_space|xss_clean');
 			if ($this->form_validation->run() == FALSE)
 			{
 				//nieudana walidacja 

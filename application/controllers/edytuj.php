@@ -70,10 +70,10 @@
 				//validacja form
 				if ( $page_name == "") {
 					//nowy artykul
-					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|is_unique[artykuly.tytul]');
+					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|xss_clean|is_unique[artykuly.tytul]');
 				} else {
 					//istniejacy artykul
-					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|');
+					$this->form_validation->set_rules('tytul', 'lang:tytul', 'required|callback_alpha_dash_space|xss_clean|');
 				}
 
 				if ($this->form_validation->run() == FALSE)

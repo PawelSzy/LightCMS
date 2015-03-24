@@ -39,8 +39,8 @@
 			//validacja form
 			$list_autorow = $this->autor->lista_autorow();
 
-			$this->form_validation->set_rules('login', 'lang:Login', 'required');
-			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required');
+			$this->form_validation->set_rules('login', 'lang:Login', 'required|xss_clean');
+			$this->form_validation->set_rules('haslo', 'lang:haslo', 'required|xss_clean');
 			if ($this->form_validation->run() == FALSE)
 			{
 				//nieudana walidacja
