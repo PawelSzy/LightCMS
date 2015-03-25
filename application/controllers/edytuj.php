@@ -23,7 +23,7 @@
 			}
 
 
-
+			$data['wyswietl_blad'] = "";
 			//przekazana wartosc (nazwa artykulu) do funkcji - edytuj wybrany dokumeny
 			if( $page_name !== "" ){
 				$artykuly = $this->artykuly->pobierz_artykul( $page_name);
@@ -87,9 +87,18 @@
 					//Udana walidacja danych
 					if ( $page_name !== "" )
 					{	//zmien dane w isniejacej stronie
-						$dane['stary_tytul'] = $page_name;
+
+						if ( !$this->czy_autor_artykulu($artykul['tytul'] ))
+						{ 
+							$dane['wyswietl_blad'] = "tylko autor artykulu moze go modyfikować";
+							$dane['tytul_artykulu'] = $artykul['tytul'];
+							$dane['tekst'] =  $artykul['tekst'];							
+							$this->parse_page($dane, $page_name);
+							return;	
+						}		
 						$dane['artykul'] = $artykul;
-						$this->artykuly->zmien_dane($dane);
+						$dane['stary_tytul'] = $page_name;
+						$this->artykuly->zmien_dane($dane);				
 						echo "informacja zapisana";
 						redirect('', 'refresh');
 					}
@@ -105,8 +114,16 @@
 
 		public function  alpha_dash_space($str)
 		{
+			//pomocniczny return True gdy string zawiera tylko liczby, litery albo spacje
 		    return ( ! preg_match("/^([-a-z0-9_ ])+$/i", $str)) ? FALSE : TRUE;
 		} 
+
+		private function czy_autor_artykulu($tytul)
+		{
+			//sprawdcza czy zalogowany uzytkownik jest autorem artykulu
+			$id_autora = (int)$this->artykuly->pobierz_id_autora_artykulu($tytul);
+			return( $id_autora == $this->session->userdata('autor_id') ) ? TRUE : FALSE;
+		}
 
 		private function parse_page($data, $page_name)
 		{

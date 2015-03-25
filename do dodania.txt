@@ -6,7 +6,6 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 ******************************************
 Przeniesc na inny serwer
 
-wyswyietl napis: usun i edytuj tylko artykuly ktore napisales 
 
 
 dodaj jakies javascript

@@ -2,7 +2,9 @@
 
 
 <div class="container" >
-	
+	<div>
+	{wyswietl_blad}
+	</div>
 	<form class="form_vraper" action='{przycisk_zapisz_akcja_do_wykonania}' method='post' accept-charset="utf-8">
 		<?php echo validation_errors();?>
 		Tytul artykulu:<br>	

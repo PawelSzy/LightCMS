@@ -36,6 +36,14 @@ class Artykuly extends CI_Model
 		return $return_array;	
 	} 
 
+	public function pobierz_id_autora_artykulu ( $nazwa_artykulu )
+	{
+		$this->db->where('tytul',urldecode($nazwa_artykulu));
+		$this->db->select('autor_id');
+		$query = $this->db->get('artykuly');
+		return $query->result_array()[0]['autor_id'];
+	}
+
 	public function pobierz_tytuly()
 	{
 		$this->db->order_by("data", "desc"); 
