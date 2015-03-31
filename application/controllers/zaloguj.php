@@ -50,27 +50,35 @@
 			{
 				//udana walidacja
 				$dane_autora = $this->autor->pobierz_autora( $login );
-				$passwordHash = $dane_autora[0]['hash'];
-
-				if ( password_verify($haslo, $passwordHash))
+				if ( empty( $dane_autora )) 
 				{
-					echo "zostales zalogowany";
-					$dane_sesji = array(
-	                   'login'  => $dane_autora[0]['login'],
-	                   'zalogowany' => TRUE,
-	                   'uprawnienia' => $dane_autora[0]['uprawnienia'],
-	                   'autor_id' => (int)$dane_autora[0]['autor_id']
-	               );
-					$this->session->set_userdata($dane_sesji);	
-					#var_dump( $dane_sesji['autor_id'] );
-					redirect('', 'refresh');
+						echo "Login nie istnieje, wpisz ponownie wlasciwy login";
+						$this->parse_zaloguj_page($data);
 				}
 				else 
 				{
-					echo "nieudane logowanie, zle haslo";
-					$this->parse_zaloguj_page($data);
-				}
-			}
+					//autor istnieje sprawdz haslo
+					$passwordHash = $dane_autora[0]['hash'];
+					if ( password_verify($haslo, $passwordHash))
+					{
+						echo "zostales zalogowany";
+						$dane_sesji = array(
+		                   'login'  => $dane_autora[0]['login'],
+		                   'zalogowany' => TRUE,
+		                   'uprawnienia' => $dane_autora[0]['uprawnienia'],
+		                   'autor_id' => (int)$dane_autora[0]['autor_id']
+		               );
+						$this->session->set_userdata($dane_sesji);	
+						#var_dump( $dane_sesji['autor_id'] );
+						redirect('', 'refresh');
+					}
+					else 
+					{
+						echo "nieudane logowanie, zle haslo";
+						$this->parse_zaloguj_page($data);
+					}
+				}	
+			}	
 		}
 
 		private function parse_zaloguj_page($data)
