@@ -6,6 +6,4 @@ zamieñ na action="http://localhost/xampp/LightCMS/index.php/nowy_autor/zapisz" g
 ******************************************
 Przeniesc na inny serwer
 
-poprawiæ b³edy w wyswietlanie pasak bocznego w nizszych rozdzielczosciach
-
 dodaj jakies javascript
